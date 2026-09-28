@@ -1,1 +1,195 @@
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Administration - EduNova</title>
+
+    <link rel="stylesheet" href="admin.css">
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+
+    <!-- CONNEXION -->
+    <div id="loginPage" class="login-page">
+
+        <div class="login-card">
+
+            <h1>Administration</h1>
+
+            <p>Connecte-toi pour gérer ton site.</p>
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Adresse e-mail"
+            >
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Mot de passe"
+            >
+
+            <button onclick="connexion()">
+                Se connecter
+            </button>
+
+            <p id="loginMessage"></p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ADMIN -->
+    <div id="adminPage" class="admin-page">
+
+        <aside>
+
+            <h2>EduNova</h2>
+
+            <nav>
+
+                <button onclick="afficherSection('apparence')">
+                    🎨 Apparence
+                </button>
+
+                <button onclick="afficherSection('contenu')">
+                    📝 Contenu
+                </button>
+
+                <button onclick="afficherSection('matieres')">
+                    📚 Matières
+                </button>
+
+            </nav>
+
+            <button class="logout" onclick="deconnexion()">
+                🚪 Déconnexion
+            </button>
+
+        </aside>
+
+
+        <main>
+
+            <header class="dashboard-header">
+
+                <h1>Tableau de bord</h1>
+
+                <a href="index.html">
+                    Voir le site →
+                </a>
+
+            </header>
+
+
+            <!-- APPARENCE -->
+            <section id="apparence" class="admin-section">
+
+                <h2>🎨 Apparence</h2>
+
+                <label>Nom du site</label>
+
+                <input
+                    type="text"
+                    id="siteName"
+                    placeholder="EduNova"
+                >
+
+                <label>Couleur principale</label>
+
+                <div class="colors">
+
+                    <button
+                        class="color purple"
+                        onclick="choisirCouleur('#6366f1')">
+                    </button>
+
+                    <button
+                        class="color blue"
+                        onclick="choisirCouleur('#2563eb')">
+                    </button>
+
+                    <button
+                        class="color green"
+                        onclick="choisirCouleur('#10b981')">
+                    </button>
+
+                    <button
+                        class="color red"
+                        onclick="choisirCouleur('#ef4444')">
+                    </button>
+
+                    <button
+                        class="color orange"
+                        onclick="choisirCouleur('#f97316')">
+                    </button>
+
+                </div>
+
+                <button class="save" onclick="sauvegarderApparence()">
+                    💾 Enregistrer
+                </button>
+
+                <p id="saveMessage"></p>
+
+            </section>
+
+
+            <!-- CONTENU -->
+            <section id="contenu" class="admin-section">
+
+                <h2>📝 Contenu</h2>
+
+                <label>Titre principal</label>
+
+                <input
+                    type="text"
+                    id="mainTitle"
+                    placeholder="Apprends. Progresse. Réussis."
+                >
+
+                <label>Description</label>
+
+                <textarea
+                    id="mainDescription"
+                    placeholder="Description de ton site..."
+                ></textarea>
+
+                <button class="save" onclick="sauvegarderContenu()">
+                    💾 Enregistrer
+                </button>
+
+            </section>
+
+
+            <!-- MATIÈRES -->
+            <section id="matieres" class="admin-section">
+
+                <h2>📚 Matières</h2>
+
+                <p>
+                    Cette partie pourra ensuite permettre
+                    d'ajouter, supprimer et modifier les matières.
+                </p>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <script src="admin.js"></script>
+
+</body>
+</html>
+```
 
