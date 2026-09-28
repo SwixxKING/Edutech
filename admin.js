@@ -1,16 +1,31 @@
+const SUPABASE_URL =
+    "https://llgmpyuzaefuyjyklqoz.supabase.co";
+
+const SUPABASE_ANON_KEY =
+    "sb_publishable_TA_CLE_ICI";
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY
+    );
 ```javascript
 // ===============================
 // CONFIGURATION SUPABASE
 // ===============================
 
-const SUPABASE_URL = "TON_URL_SUPABASE";
+const SUPABASE_URL =
+    "https://llgmpyuzaefuyjyklqoz.supabase.co";
 
-const SUPABASE_ANON_KEY = "TA_CLE_ANON_SUPABASE";
+const SUPABASE_ANON_KEY =
+    "COLLE_ICI_TA_CLE_SB_PUBLISHABLE";
 
-const supabaseClient = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_ANON_KEY
-);
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY
+    );
 
 
 // ===============================
@@ -29,6 +44,9 @@ async function connexion() {
         document.getElementById("loginMessage");
 
 
+    message.textContent = "Connexion...";
+
+
     const { data, error } =
         await supabaseClient.auth.signInWithPassword({
             email: email,
@@ -41,8 +59,14 @@ async function connexion() {
         message.textContent =
             "❌ Email ou mot de passe incorrect.";
 
+        console.error(error);
+
         return;
     }
+
+
+    message.textContent =
+        "✅ Connexion réussie !";
 
 
     afficherAdmin();
@@ -55,13 +79,21 @@ async function connexion() {
 
 function afficherAdmin() {
 
-    document
-        .getElementById("loginPage")
-        .style.display = "none";
+    const loginPage =
+        document.getElementById("loginPage");
 
-    document
-        .getElementById("adminPage")
-        .classList.add("active");
+    const adminPage =
+        document.getElementById("adminPage");
+
+
+    if (loginPage) {
+        loginPage.style.display = "none";
+    }
+
+
+    if (adminPage) {
+        adminPage.classList.add("active");
+    }
 }
 
 
@@ -92,9 +124,15 @@ function afficherSection(section) {
         });
 
 
-    document
-        .getElementById(section)
-        .style.display = "block";
+    const sectionElement =
+        document.getElementById(section);
+
+
+    if (sectionElement) {
+
+        sectionElement.style.display = "block";
+
+    }
 }
 
 
@@ -102,12 +140,20 @@ function afficherSection(section) {
 // COULEUR
 // ===============================
 
-let couleurSelectionnee = "#6366f1";
+let couleurSelectionnee =
+    "#6366f1";
 
 
 function choisirCouleur(couleur) {
 
-    couleurSelectionnee = couleur;
+    couleurSelectionnee =
+        couleur;
+
+
+    document.documentElement.style.setProperty(
+        "--couleur-principale",
+        couleur
+    );
 }
 
 
@@ -117,8 +163,18 @@ function choisirCouleur(couleur) {
 
 async function sauvegarderApparence() {
 
+    const siteNameElement =
+        document.getElementById("siteName");
+
+
+    const saveMessage =
+        document.getElementById("saveMessage");
+
+
     const nom =
-        document.getElementById("siteName").value;
+        siteNameElement
+            ? siteNameElement.value
+            : "EduNova";
 
 
     const { error } =
@@ -127,23 +183,34 @@ async function sauvegarderApparence() {
             .upsert({
                 id: 1,
                 site_name: nom,
-                primary_color: couleurSelectionnee
+                primary_color:
+                    couleurSelectionnee
             });
 
 
     if (error) {
 
-        document.getElementById("saveMessage")
-            .textContent =
-            "❌ Erreur : " + error.message;
+        console.error(error);
+
+
+        if (saveMessage) {
+
+            saveMessage.textContent =
+                "❌ Erreur : " +
+                error.message;
+
+        }
 
         return;
     }
 
 
-    document.getElementById("saveMessage")
-        .textContent =
-        "✅ Modifications enregistrées.";
+    if (saveMessage) {
+
+        saveMessage.textContent =
+            "✅ Modifications enregistrées.";
+
+    }
 }
 
 
@@ -153,11 +220,26 @@ async function sauvegarderApparence() {
 
 async function sauvegarderContenu() {
 
+    const titleElement =
+        document.getElementById("mainTitle");
+
+
+    const descriptionElement =
+        document.getElementById(
+            "mainDescription"
+        );
+
+
     const title =
-        document.getElementById("mainTitle").value;
+        titleElement
+            ? titleElement.value
+            : "";
+
 
     const description =
-        document.getElementById("mainDescription").value;
+        descriptionElement
+            ? descriptionElement.value
+            : "";
 
 
     const { error } =
@@ -166,14 +248,19 @@ async function sauvegarderContenu() {
             .upsert({
                 id: 1,
                 main_title: title,
-                main_description: description
+                main_description:
+                    description
             });
 
 
     if (error) {
 
+        console.error(error);
+
+
         alert(
-            "Erreur : " + error.message
+            "❌ Erreur : " +
+            error.message
         );
 
         return;
@@ -193,10 +280,13 @@ async function sauvegarderContenu() {
 async function verifierConnexion() {
 
     const {
-        data: { session }
-    } = await supabaseClient
-        .auth
-        .getSession();
+        data: {
+            session
+        }
+    } =
+        await supabaseClient
+            .auth
+            .getSession();
 
 
     if (session) {
@@ -205,14 +295,33 @@ async function verifierConnexion() {
 
     } else {
 
-        document
-            .getElementById("adminPage")
-            .classList.remove("active");
+        const adminPage =
+            document.getElementById(
+                "adminPage"
+            );
+
+
+        if (adminPage) {
+
+            adminPage.classList.remove(
+                "active"
+            );
+
+        }
     }
 }
 
 
-verifierConnexion();
+// ===============================
+// LANCEMENT
+// ===============================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        verifierConnexion();
+
+    }
+);
 ```
-
-
