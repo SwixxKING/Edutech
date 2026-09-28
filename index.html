@@ -1,17 +1,20 @@
+```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>EduNova</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- BARRE DE NAVIGATION -->
+    <!-- NAVIGATION -->
     <header>
-        <div class="logo">EduNova</div>
+        <div class="logo" id="siteName">EduNova</div>
 
         <nav>
             <a href="#accueil">Accueil</a>
@@ -20,7 +23,13 @@
             <a href="#apropos">À propos</a>
         </nav>
 
-        <button class="theme-btn" onclick="changerTheme()">🌙</button>
+        <div class="header-buttons">
+            <button class="theme-btn" onclick="changerTheme()">🌙</button>
+
+            <button class="customize-btn" onclick="ouvrirPersonnalisation()">
+                ⚙️ Personnaliser
+            </button>
+        </div>
     </header>
 
 
@@ -28,9 +37,11 @@
     <section id="accueil" class="hero">
 
         <div class="hero-text">
+
             <p class="small-title">PLATEFORME ÉDUCATIVE</p>
 
-            <h1>Apprends.<br>
+            <h1>
+                Apprends.<br>
                 Progresse.<br>
                 <span>Réussis.</span>
             </h1>
@@ -41,6 +52,7 @@
             </p>
 
             <div class="buttons">
+
                 <a href="#matieres" class="btn principal">
                     Commencer
                 </a>
@@ -48,12 +60,18 @@
                 <a href="#cours" class="btn secondaire">
                     Voir les cours
                 </a>
+
             </div>
+
         </div>
 
+
         <div class="hero-card">
+
             <div class="card-icon">📚</div>
+
             <h2>Ton espace d'apprentissage</h2>
+
             <p>
                 Retrouve tes matières, tes cours et ta progression
                 au même endroit.
@@ -64,6 +82,7 @@
             </div>
 
             <small>Progression : 65%</small>
+
         </div>
 
     </section>
@@ -73,36 +92,79 @@
     <section id="matieres" class="section">
 
         <p class="small-title">APPRENDRE</p>
-        <h2 class="section-title">Choisis une matière</h2>
+
+        <h2 class="section-title">
+            Choisis une matière
+        </h2>
+
 
         <div class="subjects">
 
             <div class="subject">
+
                 <div class="subject-icon">📐</div>
+
                 <h3>Mathématiques</h3>
-                <p>Calcul, géométrie, fonctions...</p>
-                <button>Voir les cours →</button>
+
+                <p>
+                    Calcul, géométrie, fonctions...
+                </p>
+
+                <button>
+                    Voir les cours →
+                </button>
+
             </div>
 
+
             <div class="subject">
+
                 <div class="subject-icon">🌍</div>
+
                 <h3>Histoire-Géo</h3>
-                <p>Histoire, géographie, EMC...</p>
-                <button>Voir les cours →</button>
+
+                <p>
+                    Histoire, géographie, EMC...
+                </p>
+
+                <button>
+                    Voir les cours →
+                </button>
+
             </div>
 
+
             <div class="subject">
+
                 <div class="subject-icon">🔬</div>
+
                 <h3>Sciences</h3>
-                <p>Physique, chimie, SVT...</p>
-                <button>Voir les cours →</button>
+
+                <p>
+                    Physique, chimie, SVT...
+                </p>
+
+                <button>
+                    Voir les cours →
+                </button>
+
             </div>
 
+
             <div class="subject">
+
                 <div class="subject-icon">🇬🇧</div>
+
                 <h3>Anglais</h3>
-                <p>Grammaire, vocabulaire, expression...</p>
-                <button>Voir les cours →</button>
+
+                <p>
+                    Grammaire, vocabulaire, expression...
+                </p>
+
+                <button>
+                    Voir les cours →
+                </button>
+
             </div>
 
         </div>
@@ -114,16 +176,25 @@
     <section id="cours" class="courses">
 
         <div>
-            <p class="small-title">COURS</p>
-            <h2>Apprends à ton rythme.</h2>
+
+            <p class="small-title">
+                COURS
+            </p>
+
+            <h2>
+                Apprends à ton rythme.
+            </h2>
 
             <p>
                 Des cours organisés par niveau pour retrouver
                 facilement ce dont tu as besoin.
             </p>
+
         </div>
 
+
         <div class="levels">
+
             <button>6ème</button>
             <button>5ème</button>
             <button>4ème</button>
@@ -131,6 +202,7 @@
             <button>Seconde</button>
             <button>Première</button>
             <button>Terminale</button>
+
         </div>
 
     </section>
@@ -139,7 +211,9 @@
     <!-- À PROPOS -->
     <section id="apropos" class="about">
 
-        <h2>Un site pensé pour les élèves.</h2>
+        <h2>
+            Un site pensé pour les élèves.
+        </h2>
 
         <p>
             EduNova rassemble les notions essentielles du collège
@@ -151,11 +225,164 @@
 
     <!-- FOOTER -->
     <footer>
-        <p>© 2026 EduNova — Tous droits réservés.</p>
+
+        <p>
+            © 2026 EduNova — Tous droits réservés.
+        </p>
+
     </footer>
 
+
+    <!-- PANNEAU DE PERSONNALISATION -->
+    <div id="customPanel" class="custom-panel">
+
+        <div class="custom-header">
+
+            <h2>⚙️ Personnaliser</h2>
+
+            <button onclick="fermerPersonnalisation()">
+                ✕
+            </button>
+
+        </div>
+
+
+        <div class="custom-content">
+
+
+            <!-- NOM -->
+            <div class="setting">
+
+                <label>
+                    Nom du site
+                </label>
+
+                <input
+                    type="text"
+                    id="nameInput"
+                    placeholder="Nom de ton site"
+                >
+
+            </div>
+
+
+            <!-- COULEUR -->
+            <div class="setting">
+
+                <label>
+                    Couleur principale
+                </label>
+
+                <div class="colors">
+
+                    <button
+                        class="color purple"
+                        onclick="changerCouleur('#6366f1')">
+                    </button>
+
+                    <button
+                        class="color blue"
+                        onclick="changerCouleur('#2563eb')">
+                    </button>
+
+                    <button
+                        class="color green"
+                        onclick="changerCouleur('#10b981')">
+                    </button>
+
+                    <button
+                        class="color red"
+                        onclick="changerCouleur('#ef4444')">
+                    </button>
+
+                    <button
+                        class="color orange"
+                        onclick="changerCouleur('#f97316')">
+                    </button>
+
+                    <button
+                        class="color pink"
+                        onclick="changerCouleur('#ec4899')">
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- THÈME -->
+            <div class="setting">
+
+                <label>
+                    Thème
+                </label>
+
+                <div class="theme-options">
+
+                    <button onclick="modeClair()">
+                        ☀️ Clair
+                    </button>
+
+                    <button onclick="modeSombre()">
+                        🌙 Sombre
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- TAILLE -->
+            <div class="setting">
+
+                <label>
+                    Taille du texte
+                </label>
+
+                <div class="text-size">
+
+                    <button onclick="changerTaille('small')">
+                        A
+                    </button>
+
+                    <button onclick="changerTaille('normal')">
+                        A+
+                    </button>
+
+                    <button onclick="changerTaille('large')">
+                        A++
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- BOUTONS -->
+            <div class="custom-actions">
+
+                <button
+                    class="save-btn"
+                    onclick="sauvegarder()">
+                    💾 Enregistrer
+                </button>
+
+                <button
+                    class="reset-btn"
+                    onclick="reinitialiser()">
+                    ↩️ Réinitialiser
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- SCRIPT -->
     <script src="script.js"></script>
 
 </body>
 </html>
-
+```
